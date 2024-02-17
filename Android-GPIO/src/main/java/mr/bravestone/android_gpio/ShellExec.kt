@@ -6,7 +6,10 @@ import java.io.InputStreamReader
 
 class ShellExec constructor(Command: String) {
     var Result = ""
+    var Status = ""
     init {
+        Result = ""
+        Status = ""
         try {
             val process = Runtime.getRuntime().exec(Command)
             val reader = BufferedReader(
@@ -21,10 +24,15 @@ class ShellExec constructor(Command: String) {
             reader.close()
             process.waitFor()
             Result=output.toString()
+            Status = "pass"
         } catch (e: IOException) {
             println("RuntimeException $Command Failed to Execute")
+            Status = "fail"
+            Result="fail"
         } catch (e: InterruptedException) {
             println("IntruptedException $Command Execution Not Successful")
+            Status = "fail"
+            Result="fail"
         }
     }
 
