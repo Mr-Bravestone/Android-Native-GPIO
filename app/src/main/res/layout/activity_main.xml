@@ -6,13 +6,36 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <TextView
+    <Button
+        android:id="@+id/chkRoot"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
+        android:text="Check Root"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/pcfBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="PCF8574"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/chkRoot"
+        app:layout_constraintEnd_toEndOf="@+id/obgpio"
+        app:layout_constraintStart_toStartOf="@+id/chkRoot"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/obgpio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="On Board GPIO"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/chkRoot"
+        app:layout_constraintStart_toStartOf="@+id/chkRoot"
+        app:layout_constraintTop_toTopOf="@+id/chkRoot" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
