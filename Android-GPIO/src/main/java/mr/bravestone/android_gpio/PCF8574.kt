@@ -77,5 +77,125 @@ class PCF8574 {
         return DeviceStatus
 
     }
+    fun Export(pin: Int): String {
+        var PinNum: Int
+        when (pin) {
+            1 -> PinNum = 1272
+            2 -> PinNum = 1273
+            3 -> PinNum = 1274
+            4 -> PinNum = 1275
+            5 -> PinNum = 1276
+            6 -> PinNum = 1277
+            7 -> PinNum = 1278
+            8 -> PinNum = 1279
+            else -> {
+                return "Wrong_Pin_Number"
+            }
+        }
+        GPIO().Export(PinNum)
+        return "OK"
+
+    }
+    fun Direction(pin: Int,direction: String): String {
+        var PinNum: Int
+        var PinDirection: String
+        when (pin) {
+            1 -> PinNum = 1272
+            2 -> PinNum = 1273
+            3 -> PinNum = 1274
+            4 -> PinNum = 1275
+            5 -> PinNum = 1276
+            6 -> PinNum = 1277
+            7 -> PinNum = 1278
+            8 -> PinNum = 1279
+            else -> {
+                return "Wrong_Pin_Number"
+            }
+        }
+        when (direction) {
+            "INPUT" -> PinDirection = "in"
+            "OUTPUT" -> PinDirection = "out"
+            else -> {
+                return "Wrong_Direction"
+            }
+        }
+        GPIO().Direction(PinNum,PinDirection)
+        return "OK"
+
+    }
+    fun Write(pin: Int,pulse: String): String {
+        var PinNum: Int
+        var Pulse: Int
+        when (pin) {
+            1 -> PinNum = 1272
+            2 -> PinNum = 1273
+            3 -> PinNum = 1274
+            4 -> PinNum = 1275
+            5 -> PinNum = 1276
+            6 -> PinNum = 1277
+            7 -> PinNum = 1278
+            8 -> PinNum = 1279
+            else -> {
+                return "Wrong_Pin_Number"
+            }
+        }
+        when (pulse) {
+            "HIGH" -> Pulse = 1
+            "LOW" -> Pulse = 0
+            else -> {
+                return "Wrong_Value"
+            }
+        }
+        GPIO().Write(PinNum,Pulse)
+        return "OK"
+
+    }
+    fun Read(pin:Int): String {
+        var PinNum: Int
+        when (pin) {
+            1 -> PinNum = 1272
+            2 -> PinNum = 1273
+            3 -> PinNum = 1274
+            4 -> PinNum = 1275
+            5 -> PinNum = 1276
+            6 -> PinNum = 1277
+            7 -> PinNum = 1278
+            8 -> PinNum = 1279
+            else -> {
+                return "Wrong_Pin_Number"
+            }
+        }
+        return GPIO().Read(PinNum)
+
+    }
+    fun UnExport(pin:Int): String {
+        var PinNum: Int
+        when (pin) {
+            1 -> PinNum = 1272
+            2 -> PinNum = 1273
+            3 -> PinNum = 1274
+            4 -> PinNum = 1275
+            5 -> PinNum = 1276
+            6 -> PinNum = 1277
+            7 -> PinNum = 1278
+            8 -> PinNum = 1279
+            else -> {
+                return "Wrong_Pin_Number"
+            }
+        }
+        GPIO().UnExport(PinNum)
+        return "OK"
+
+    }
+    fun pinMode() {
+
+    }
+    fun digitalWrite() {
+
+    }
+    fun digitalRead() {
+
+    }
+
 
 }
