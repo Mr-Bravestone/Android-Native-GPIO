@@ -77,7 +77,7 @@ class PCF8574 {
         return DeviceStatus
 
     }
-    fun Export(pin: Int): String {
+    private fun Export(pin: Int): String {
         var PinNum: Int
         when (pin) {
             1 -> PinNum = 1272
@@ -96,7 +96,7 @@ class PCF8574 {
         return "OK"
 
     }
-    fun Direction(pin: Int,direction: String): String {
+    private fun Direction(pin: Int,direction: String): String {
         var PinNum: Int
         var PinDirection: String
         when (pin) {
@@ -123,7 +123,7 @@ class PCF8574 {
         return "OK"
 
     }
-    fun Write(pin: Int,pulse: String): String {
+    private fun Write(pin: Int,pulse: String): String {
         var PinNum: Int
         var Pulse: Int
         when (pin) {
@@ -150,7 +150,7 @@ class PCF8574 {
         return "OK"
 
     }
-    fun Read(pin:Int): String {
+    private fun Read(pin:Int): String {
         var PinNum: Int
         when (pin) {
             1 -> PinNum = 1272
@@ -168,7 +168,7 @@ class PCF8574 {
         return GPIO().Read(PinNum)
 
     }
-    fun UnExport(pin:Int): String {
+    private fun UnExport(pin:Int): String {
         var PinNum: Int
         when (pin) {
             1 -> PinNum = 1272
@@ -187,14 +187,24 @@ class PCF8574 {
         return "OK"
 
     }
-    fun pinMode() {
-
+    fun startModule(): String {
+        for (i in 1..8) {
+            Export(i)
+            Direction(i, "OUTPUT")
+            Write(i, "LOW")
+        }
+        return "OK"
     }
-    fun digitalWrite() {
-
+    fun pinMode(pin: Int,direction: String): String {
+        Direction(pin,direction)
+        return "OK"
     }
-    fun digitalRead() {
-
+    fun digitalWrite(pin: Int,pulse: String): String {
+        Write(pin,pulse)
+        return "OK"
+    }
+    fun digitalRead(pin: Int): String {
+        return Read(pin)
     }
 
 

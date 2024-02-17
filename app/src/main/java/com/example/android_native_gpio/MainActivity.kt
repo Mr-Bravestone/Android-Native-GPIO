@@ -21,17 +21,33 @@ class MainActivity : AppCompatActivity() {
         //println(PCF8574().getGPIOs())
         //println(PCF8574().getBusInfo())
         //println(PCF8574().getDeviceName())
-        println(PCF8574().Export(3))
-        println(PCF8574().Direction(3,"OUTPUT"))
+        //println(PCF8574().Export(3))
+        //println(PCF8574().Direction(3,"OUTPUT"))
 
-        while (true){
-            println(PCF8574().Write(3,"LOW"))
-            Thread.sleep(1000)
-            println(PCF8574().Write(3,"HIGH"))
-            Thread.sleep(1000)
-        }
-        println(PCF8574().Read(3))
+//        while (true){
+//            println(PCF8574().Write(3,"LOW"))
+//            Thread.sleep(1000)
+//            println(PCF8574().Write(3,"HIGH"))
+//            Thread.sleep(1000)
+//        }
+        //println(PCF8574().Read(3))
         //println(PCF8574().UnExport(1))
+        var Module = PCF8574()
+        Module.pinMode(3,"OUTPUT")
+        Module.pinMode(4,"OUTPUT")
+        Module.digitalWrite(4,"HIGH")
+        while (true)
+        {
+            Module.digitalWrite(3,"HIGH")
+            Module.digitalWrite(4,"LOW")
+            Thread.sleep(500)
+            Module.digitalWrite(3,"LOW")
+            Module.digitalWrite(4,"HIGH")
+            Thread.sleep(500)
+
+        }
+
+
 
 
 
