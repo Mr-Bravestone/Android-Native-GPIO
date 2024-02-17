@@ -1,19 +1,52 @@
 package mr.bravestone.android_gpio
 
 class GPIO {
-    fun Export(pin:Int): String {
-        return ShellExec("su -c echo $pin  > /sys/class/gpio/export").Status
+    private fun Export(pin: Int): String {
+        IO().Export(pin)
+        return "OK"
     }
-    fun Direction(pin:Int,direction: String): String {
-        return ShellExec("su -c echo $direction > /sys/class/gpio/gpio$pin/direction").Status
+    private fun Direction(pin: Int,direction: String): String {
+        var PinDirection: String
+        when (direction) {
+            "INPUT" -> PinDirection = "in"
+            "OUTPUT" -> PinDirection = "out"
+            else -> {
+                return "Wrong_Direction"
+            }
+        }
+        IO().Direction(pin,PinDirection)
+        return "OK"
     }
-    fun Write(pin:Int,pulse: Int): String {
-        return ShellExec("su -c echo $pulse >  /sys/class/gpio/gpio$pin/value").Status
+    private fun Write(pin: Int,pulse: String): String {
+        var Pulse: Int
+        when (pulse) {
+            "HIGH" -> Pulse = 1
+            "LOW" -> Pulse = 0
+            else -> {
+                return "Wrong_Value"
+            }
+        }
+        IO().Write(pin,Pulse)
+        return "OK"
     }
-    fun Read(pin: Int): String {
-        return ShellExec("su -c cat /sys/class/gpio/gpio$pin/value").Result
+    private fun Read(pin:Int): String {
+        return IO().Read(pin)
     }
-    fun UnExport(pin:Int): String {
-        return ShellExec("su -c echo $pin  > /sys/class/gpio/unexport").Status
+    private fun UnExport(pin:Int): String {
+        IO().UnExport(pin)
+        return "OK"
+
+    }
+    fun pinMode(pin: Int,direction: String): String {
+        Export(pin)
+        Direction(pin,direction)
+        return "OK"
+    }
+    fun digitalWrite(pin: Int,pulse: String): String {
+        Write(pin,pulse)
+        return "OK"
+    }
+    fun digitalRead(pin: Int): String {
+        return Read(pin)
     }
 }

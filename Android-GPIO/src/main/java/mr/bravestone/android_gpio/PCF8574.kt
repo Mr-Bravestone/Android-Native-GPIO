@@ -92,7 +92,7 @@ class PCF8574 {
                 return "Wrong_Pin_Number"
             }
         }
-        GPIO().Export(PinNum)
+        IO().Export(PinNum)
         return "OK"
 
     }
@@ -119,7 +119,7 @@ class PCF8574 {
                 return "Wrong_Direction"
             }
         }
-        GPIO().Direction(PinNum,PinDirection)
+        IO().Direction(PinNum,PinDirection)
         return "OK"
 
     }
@@ -146,7 +146,7 @@ class PCF8574 {
                 return "Wrong_Value"
             }
         }
-        GPIO().Write(PinNum,Pulse)
+        IO().Write(PinNum,Pulse)
         return "OK"
 
     }
@@ -165,7 +165,7 @@ class PCF8574 {
                 return "Wrong_Pin_Number"
             }
         }
-        return GPIO().Read(PinNum)
+        return IO().Read(PinNum)
 
     }
     private fun UnExport(pin:Int): String {
@@ -183,7 +183,7 @@ class PCF8574 {
                 return "Wrong_Pin_Number"
             }
         }
-        GPIO().UnExport(PinNum)
+        IO().UnExport(PinNum)
         return "OK"
 
     }
