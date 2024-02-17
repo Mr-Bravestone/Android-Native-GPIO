@@ -1,39 +1,81 @@
 package mr.bravestone.android_gpio
 
-import android.bluetooth.BluetoothClass.Device
-
 class PCF8574 {
-    var Device = ""
-    var Gpios = ""
-    var BusInfo = ""
-    var ChipName = ""
-    fun CheckDevice(): String {
+    private var DeviceName = ""
+    private var GPIOs = ""
+    private var BusInfo = ""
+    private var ChipName = ""
+    private var DeviceStatus = ""
+    private fun CheckDevice() {
         var result=ShellExec("su -c cat /sys/kernel/debug/gpio | grep pcf857").Result
-        var resultString = result.toString()
-        var resultSplitWith = listOf(result.split(",|:").map { it.trim() })
+        var resultSplitWith :List<String> = result.split(":",",").map { it.trim() }
+        if (result.isBlank())
+        {
+            DeviceStatus = "NoDevice"
+        }
+        else if (result.isNotBlank()){
+            DeviceStatus = "DeviceAvailable"
+        }
 
         resultSplitWith.forEach {
             if (it.contains("gpiochip"))
             {
-                println("Gpiochip - " + it)
+                var chipData: String = it.toString()
+                ChipName = chipData.trim()
             }
             else if (it.contains("GPIOs"))
             {
-                println("GPIOs - " + it)
-
+                var gpioData: String = it.toString()
+                GPIOs = gpioData.replace("GPIOs","").trim()
             }
-            else if (it.contains("parent"))
+            else if (it.contains("i2c"))
             {
-                println("Bus - " + it)
+                var businfoData: String = it.toString()
+                BusInfo = businfoData.replace("i2c/","").trim()
+
             }
             else if (it.contains("pcf857"))
             {
-                println("Device - " + it)
+                var deviceData: String = it.toString()
+                DeviceName = deviceData.trim()
             }
 
-
         }
-        return resultString
+    }
+    fun getChipName(): String {
+        CheckDevice()
+        if (DeviceStatus == "NoDevice"){
+        return DeviceStatus
+        }
+        return ChipName
+    }
+    fun getGPIOs(): String {
+        CheckDevice()
+        if (DeviceStatus == "NoDevice"){
+            return DeviceStatus
+        }
+        return GPIOs
+    }    fun getBusInfo(): String {
+        CheckDevice()
+        if (DeviceStatus == "NoDevice"){
+            return DeviceStatus
+        }
+        return BusInfo
+    }
+    fun getDeviceName(): String {
+        CheckDevice()
+        if (DeviceStatus == "NoDevice"){
+            return DeviceStatus
+        }
+        return DeviceName
+    }
+    fun getDeviceStatus(): String {
+        CheckDevice()
+        if (DeviceStatus == "NoDevice"){
+            return DeviceStatus
+        }
+        return DeviceStatus
 
     }
+
 }
