@@ -1,6 +1,6 @@
 package mr.bravestone.android_gpio
 
-class PCF8574 {
+class PCF8575 {
     private var DeviceName = ""
     private var GPIOs = ""
     private var BusInfo = ""
@@ -80,14 +80,22 @@ class PCF8574 {
     private fun Export(pin: Int): String {
         var PinNum: Int
         when (pin) {
-            1 -> PinNum = 1272
-            2 -> PinNum = 1273
-            3 -> PinNum = 1274
-            4 -> PinNum = 1275
-            5 -> PinNum = 1276
-            6 -> PinNum = 1277
-            7 -> PinNum = 1278
-            8 -> PinNum = 1279
+            1 -> PinNum = 1264
+            2 -> PinNum = 1265
+            3 -> PinNum = 1266
+            4 -> PinNum = 1267
+            5 -> PinNum = 1268
+            6 -> PinNum = 1269
+            7 -> PinNum = 1270
+            8 -> PinNum = 1271
+            9 -> PinNum = 1272
+            10 -> PinNum = 1273
+            11 -> PinNum = 1274
+            12 -> PinNum = 1275
+            13 -> PinNum = 1276
+            14 -> PinNum = 1277
+            15 -> PinNum = 1278
+            16 -> PinNum = 1279
             else -> {
                 return "Wrong_Pin_Number"
             }
@@ -100,14 +108,22 @@ class PCF8574 {
         var PinNum: Int
         var PinDirection: String
         when (pin) {
-            1 -> PinNum = 1272
-            2 -> PinNum = 1273
-            3 -> PinNum = 1274
-            4 -> PinNum = 1275
-            5 -> PinNum = 1276
-            6 -> PinNum = 1277
-            7 -> PinNum = 1278
-            8 -> PinNum = 1279
+            1 -> PinNum = 1264
+            2 -> PinNum = 1265
+            3 -> PinNum = 1266
+            4 -> PinNum = 1267
+            5 -> PinNum = 1268
+            6 -> PinNum = 1269
+            7 -> PinNum = 1270
+            8 -> PinNum = 1271
+            9 -> PinNum = 1272
+            10 -> PinNum = 1273
+            11 -> PinNum = 1274
+            12 -> PinNum = 1275
+            13 -> PinNum = 1276
+            14 -> PinNum = 1277
+            15 -> PinNum = 1278
+            16 -> PinNum = 1279
             else -> {
                 return "Wrong_Pin_Number"
             }
@@ -127,14 +143,22 @@ class PCF8574 {
         var PinNum: Int
         var Pulse: Int
         when (pin) {
-            1 -> PinNum = 1272
-            2 -> PinNum = 1273
-            3 -> PinNum = 1274
-            4 -> PinNum = 1275
-            5 -> PinNum = 1276
-            6 -> PinNum = 1277
-            7 -> PinNum = 1278
-            8 -> PinNum = 1279
+            1 -> PinNum = 1264
+            2 -> PinNum = 1265
+            3 -> PinNum = 1266
+            4 -> PinNum = 1267
+            5 -> PinNum = 1268
+            6 -> PinNum = 1269
+            7 -> PinNum = 1270
+            8 -> PinNum = 1271
+            9 -> PinNum = 1272
+            10 -> PinNum = 1273
+            11 -> PinNum = 1274
+            12 -> PinNum = 1275
+            13 -> PinNum = 1276
+            14 -> PinNum = 1277
+            15 -> PinNum = 1278
+            16 -> PinNum = 1279
             else -> {
                 return "Wrong_Pin_Number"
             }
@@ -153,14 +177,22 @@ class PCF8574 {
     private fun Read(pin:Int): String {
         var PinNum: Int
         when (pin) {
-            1 -> PinNum = 1272
-            2 -> PinNum = 1273
-            3 -> PinNum = 1274
-            4 -> PinNum = 1275
-            5 -> PinNum = 1276
-            6 -> PinNum = 1277
-            7 -> PinNum = 1278
-            8 -> PinNum = 1279
+            1 -> PinNum = 1264
+            2 -> PinNum = 1265
+            3 -> PinNum = 1266
+            4 -> PinNum = 1267
+            5 -> PinNum = 1268
+            6 -> PinNum = 1269
+            7 -> PinNum = 1270
+            8 -> PinNum = 1271
+            9 -> PinNum = 1272
+            10 -> PinNum = 1273
+            11 -> PinNum = 1274
+            12 -> PinNum = 1275
+            13 -> PinNum = 1276
+            14 -> PinNum = 1277
+            15 -> PinNum = 1278
+            16 -> PinNum = 1279
             else -> {
                 return "Wrong_Pin_Number"
             }
@@ -171,14 +203,22 @@ class PCF8574 {
     private fun UnExport(pin:Int): String {
         var PinNum: Int
         when (pin) {
-            1 -> PinNum = 1272
-            2 -> PinNum = 1273
-            3 -> PinNum = 1274
-            4 -> PinNum = 1275
-            5 -> PinNum = 1276
-            6 -> PinNum = 1277
-            7 -> PinNum = 1278
-            8 -> PinNum = 1279
+            1 -> PinNum = 1264
+            2 -> PinNum = 1265
+            3 -> PinNum = 1266
+            4 -> PinNum = 1267
+            5 -> PinNum = 1268
+            6 -> PinNum = 1269
+            7 -> PinNum = 1270
+            8 -> PinNum = 1271
+            9 -> PinNum = 1272
+            10 -> PinNum = 1273
+            11 -> PinNum = 1274
+            12 -> PinNum = 1275
+            13 -> PinNum = 1276
+            14 -> PinNum = 1277
+            15 -> PinNum = 1278
+            16 -> PinNum = 1279
             else -> {
                 return "Wrong_Pin_Number"
             }
@@ -188,7 +228,7 @@ class PCF8574 {
 
     }
     fun startModule(): String {
-        for (i in 1..8) {
+        for (i in 1..16) {
             Export(i)
             Direction(i, "OUTPUT")
             Write(i, "LOW")

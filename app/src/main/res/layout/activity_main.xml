@@ -38,4 +38,11 @@
         app:layout_constraintStart_toStartOf="@+id/chkRoot"
         app:layout_constraintTop_toTopOf="@+id/chkRoot" />
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:itemCount="5"
+        tools:listitem="@layout/card_view_design" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
