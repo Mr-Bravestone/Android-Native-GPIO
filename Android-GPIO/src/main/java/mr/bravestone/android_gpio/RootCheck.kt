@@ -1,23 +1,23 @@
 package mr.bravestone.android_gpio
 
 class RootCheck {
-    fun Ability(): Int {
+    fun Ability(): Boolean {
         try{
             var result = ShellExec("su -c ls").Status
             if(result == "pass")
             {
                 println("Rooted")
-                return 1
+                return true
             }
             else
             {
                 println("RootNotFound")
-                return 0
+                return false
             }
 
         }catch(e: Exception){
             println("RootNotFound")
-            return 0
+            return false
         }
 
     }

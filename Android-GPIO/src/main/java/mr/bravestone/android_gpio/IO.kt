@@ -16,4 +16,16 @@ class IO {
     fun UnExport(pin:Int): String {
         return ShellExec("su -c echo $pin  > /sys/class/gpio/unexport").Status
     }
+    fun GetDirection(pin:Int): String
+    {
+        return ShellExec("su -c cat /sys/class/gpio/gpio$pin/direction").Result
+
+
+    }
+    fun GetValue(pin:Int): String
+    {
+        return ShellExec("su -c cat /sys/class/gpio/gpio$pin/value").Result
+
+    }
+
 }
