@@ -1,6 +1,6 @@
 [![](https://jitpack.io/v/Mr-Bravestone/Android-Native-Serial-UART.svg)](https://jitpack.io/#Mr-Bravestone/Android-Native-Serial-UART)
-# Android-Native-Serialport
-Credit: Google's official serial port library [android-serialport-api](https://code.google.com/archive/p/android-serialport-api/)
+# Android-Native-GPIO
+Credit: Me
 
 
 <img src ="https://github.com/Mr-Bravestone/Android-Native-GPIO/blob/master/art/Start.png" height = 150 alt ="Android-Native-SerialPort"/>
