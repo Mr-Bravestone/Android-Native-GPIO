@@ -1,4 +1,4 @@
-[![](https://jitpack.io/v/Mr-Bravestone/Android-Native-Serial-UART.svg)](https://jitpack.io/#Mr-Bravestone/Android-Native-Serial-UART)
+[![](https://jitpack.io/v/Mr-Bravestone/Android-Native-GPIO.svg)](https://jitpack.io/#Mr-Bravestone/Android-Native-GPIO)
 # Android-Native-GPIO
 Credit: Me
 
@@ -25,48 +25,55 @@ Credit: Me
 ```
 dependencies {
     //For Java.
-    implementation 'com.github.Mr-Bravestone:Android-Native-Serial-UART:V1.0.0'
+    implementation 'com.github.Mr-Bravestone:Android-Native-GPIO:V1.0.1'
     //For Kotlin.
-    implementation("com.github.Mr-Bravestone:Android-Native-Serial-UART:V1.0.0")
+    implementation("com.github.Mr-Bravestone:Android-Native-GPIO:V1.0.1")
 }
 ```
-## 1.List the serial port and creating object
+## 1. Check Root Ability
 ```
-var serialTool = object: SerialTool() {}
-var serialPortFinder =SerialPortFinder.getAllDevicesPath();
-serialTool = object: SerialTool()
+if (RootCheck().Ability())
 {
-    override fun onDataReceived(paramComBean: ComBean?) {
-        super.onDataReceived(paramComBean)
-        runOnUiThread {
-            run {
-                if (paramComBean != null) {
-                    val result =String(paramComBean.bRec, StandardCharsets.UTF_8)
-                    Log.d("Received - ",result)
-                }
-            }
-
-        }
-    }
+	Toast.makeText(applicationContext,"Rooted",Toast.LENGTH_SHORT).show()
+	//CONTINUE
+}
+else
+{
+	Toast.makeText(applicationContext,"Root Access Not Available",Toast.LENGTH_SHORT).show()
+	//STOP ROOT NOT FOUND
 }
 ```
-## 2.Serial port settings
+## 2. Detect Gpio Expander
 ```
-serialTool.setPort(String sPort);      //serial port
-serialTool.setBaudRate(int iBaud);     //baud rate
+if(PCF8575().getDeviceStatus().equals("DeviceAvailable"))
+{
+	//Continue
+}
+else
+{
+	//Stop
+}
 ```
-Serial port property settings must be set before the function 'open()' is executed.
-## 3. Opening serial port
+## 3. Get Gpio Pins Range
 ```
-serialTool.open();
+val gpio = PCF8575().getGPIOs() //gpio range for like 1264-1279 on my 16bit PCF8575 Expander
+println(gpio)
 ```
-## 4.Closing serial port
+## 4. Export Gpio
 ```
-serialTool.close();
+IO().Export(pin) //pin = gpio number like 1264 Int Value
 ```
-## 5.Sending
+## 5. Set Direction
 ```
-serialTool.send(byte[] bOutArray); // sending byte[]
-serialTool.sendHex(String sHex);  // sending Hex
-serialTool.sendTxt(String sTxt);  // sending ASCII
+IO().Direction(pin,"out") // for output
+IO().Direction(pin,"in") // for input
+```
+## 6. Set Gpio Value
+```
+IO().Write(pin,1) // for high like arduino digitalWrite
+IO().Write(pin,0) // for low like arduino digitalWrite
+```
+# 7. Read Gpio Value
+```
+IO().GetValue(pin) // Read Value from Gpio pin like arduino digitalRead  -  it returns 0 / 1
 ```
