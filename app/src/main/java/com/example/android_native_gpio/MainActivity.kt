@@ -25,7 +25,6 @@ class MainActivity : AppCompatActivity() {
                 {
                     Toast.makeText(applicationContext,"Rooted",Toast.LENGTH_SHORT).show()
                     if(PCF8575().getDeviceStatus().equals("DeviceAvailable")){
-
                         startActivity(Intent(this@MainActivity,PinList::class.java))
                     }
                     else
